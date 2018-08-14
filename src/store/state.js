@@ -1,4 +1,9 @@
 export const state = {
-    notes:[],
-    
+  notes: [],
+  activeNote: {
+    // date: '',
+    // content: ""
+  },
+  isCheck: false,
+  search:""
 }

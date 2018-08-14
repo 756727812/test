@@ -1,17 +1,27 @@
 <template>
   <div class="hello">
     <h6>{{ msg }}</h6>
-    
+    <headComponent></headComponent>
+    <noteList></noteList>
+    <toolbar></toolbar>
   </div>
 </template>
 
 <script>
+import headComponent from './Header.vue';
+import noteList from './NoteList.vue';
+import toolbar from './Toolbar.vue';
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'nwoigeriogjweogje'
     }
+  },
+  components: {
+    headComponent,
+    noteList,
+    toolbar
   }
 }
 </script>
