@@ -8,6 +8,11 @@ import MuseUI from "muse-ui"
 import 'muse-ui/dist/muse-ui.css';
 Vue.use(MuseUI);
 
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css';
+
+Vue.use(Mint);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

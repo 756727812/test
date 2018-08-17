@@ -1,44 +1,63 @@
 <template>
-    <div class="head">
-        <div v-if='isCheck'>
-            <span class="icon" @click="openFolder"><mu-icon value="folder-open"></mu-icon></span>
-            <h2>便签</h2>
-            <span>
-                <span class="icon" v-if="layout=='grid'" @click="changeLayout"><mu-icon value="list"></mu-icon></span>
-                <span class="icon" v-else @click="changeLayout"><mu-icon value="th-large"></mu-icon></span>
-            </span>
-        </div>
-        <div v-else class='flex'>
-            <button >取消</button>
-            <span>已选择{{count}}</span>
-            <button >全选</button>
+    <div class="head" :class="{visible:isVisible}">
+        <div :class="{visible:isVisible}">
+            <div v-if='isCheck'>
+                <span class="icon" @click="openFolder"><mu-icon value="folder-open"></mu-icon></span>
+                <h2>便签</h2>
+                <span>
+                    <span class="icon" v-if="layout=='grid'" @click="changeLayout"><mu-icon value="list"></mu-icon></span>
+                    <span class="icon" v-else @click="changeLayout"><mu-icon value="th-large"></mu-icon></span>
+                </span>
+            </div>
+            <div v-else class='flex'>
+                <button >取消</button>
+                <span>已选择{{count}}</span>
+                <button @click="checkAll()">{{checkBtnTxt}}</button>
+            </div>
         </div>
         <div class="search">
             <div class="icon"><mu-icon value="search"></mu-icon></div>
             <input type="text" v-model="searchTxt" @keyup="search" @focus="searchFocus" @blur="searchBlur"/>
         </div>
+        <!-- <noteList></noteList> -->
     </div>
 </template>
 
 <script>
+import noteList from './NoteList.vue';
+import { mapGetters } from "vuex";
 export default {
   name: 'headComponent',
   data () {
     return {
-      count: 0,
-      isCheck: false,
+    //   count: 0,
+        checkBtnTxt: '全选',
       searchTxt:'',
+      isVisible: false
     }
   },
+  computed: {
+      ...mapGetters(['isCheck']),
+      count(){
+          return this.$store.state.deleteNodes.length;
+      }
+  },
   methods:{
-      searchBlur(){
+      changeLayout(){
 
+      },
+      searchBlur(){
+          this.isVisible=false;
       },
       searchFocus(){
-
+          this.isVisible=true;
       },
       search(){
-
+          this.$store.state.search = this.searchTxt;
+      },
+      checkAll(){
+          
+          this.$store.dispatch('checkAll');
       }
   }
 }
@@ -47,6 +66,12 @@ export default {
 <style scoped>
 .head{
     width: 100%;
+}
+.head.visible{
+    padding-top: 0.5rem;
+}
+.head .visible{
+    display: none;
 }
     .flex{
         width: 100%;

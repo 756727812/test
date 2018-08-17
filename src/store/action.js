@@ -6,5 +6,8 @@ export const actions = {
     },
     addNote({ commit }, note){
         commit(types.NEW_NOTE, note);
+    },
+    checkAll({ commit }){
+        commit(types.ALL_CHECK);
     }
 };

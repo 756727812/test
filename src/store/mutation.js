@@ -10,12 +10,18 @@ export const mutations = {
         if(note.content==="")return;
         let newNote = {
             id: +new Date(),
-            date: moment(new Date()).format('YYYY-MM-DD hh:mm'),
+            date: note.date,
             content: note.content,
             done: false
         }
         state.activeNote = newNote;
         state.notes.push(note);
+        console.log(newNote);
+    },
+    [types.ALL_CHECK](state){
+        state.notes.forEach(n => {
+            n.done = true;
+        });
         console.log(state.notes);
     }
 }

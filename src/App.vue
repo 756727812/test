@@ -18,4 +18,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+html{
+  font-size: 12px;
+}
+p{
+  margin: 0;
+}
 </style>

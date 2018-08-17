@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import * as moment from "moment";
 export default {
     data () {
         return {
@@ -30,6 +31,7 @@ export default {
         },
         commitAdd(){
             console.log(this.content);
+            this.activeNote.date = moment(new Date()).format('YYYY-MM-DD HH:MM:SS'),
             this.$store.dispatch('addNote', this.activeNote);
             this.$router.push({path: "/"});
         },

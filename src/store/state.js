@@ -5,5 +5,7 @@ export const state = {
     // content: ""
   },
   isCheck: false,
-  search:""
+  deleteNodes: [],
+  search:"",
+  layout: "grid"
 }
